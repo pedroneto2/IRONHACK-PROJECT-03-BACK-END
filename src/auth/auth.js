@@ -1,8 +1,5 @@
 import { Router } from 'express';
 import axios from 'axios';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const accessTokenURL = 'https://www.linkedin.com/oauth/v2/accessToken';
 
