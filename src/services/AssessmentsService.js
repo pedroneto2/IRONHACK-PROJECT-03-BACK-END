@@ -8,7 +8,7 @@ class AssessmentsService {
   }
   create = async (newAssessmentBody, companyID, userID) => {
     const schema = yup.object().shape({
-      isAnonymous: yup.boolean().required(),
+      isAnonymous: yup.boolean(),
       grade1: yup.number().required().min(0).max(10),
       grade2: yup.number().required().min(0).max(10),
       grade3: yup.number().required().min(0).max(10),
@@ -31,6 +31,11 @@ class AssessmentsService {
 
     const newAssessment = await this.repository.create(newAssessmentBody);
     return newAssessment;
+  };
+
+  verifyDoubleAssessment = async (companyID, userID) => {
+    const doubleAssessment = await this.repository.verifyDoubleAssessment(companyID, userID);
+    return doubleAssessment;
   };
 }
 

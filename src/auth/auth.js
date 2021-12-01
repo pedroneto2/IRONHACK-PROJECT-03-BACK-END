@@ -20,6 +20,7 @@ route.post('/login', async (req, resp, next) => {
   const params = generateQuery(code);
   try {
     const { data } = await axios.post(accessTokenURL, params);
+    console.log(data)
     resp.status(200).json(data);
   } catch (error) {
     next(error);

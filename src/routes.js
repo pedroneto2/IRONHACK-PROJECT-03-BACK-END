@@ -8,7 +8,6 @@ import NotAuthenticated from './exceptions/NotAuthenticated';
 
 import companiesController from './controllers/companiesController';
 import assessmentsController from './controllers/assessmentsController';
-import usersController from './controllers/usersController';
 
 const route = Router();
 
@@ -22,7 +21,6 @@ route.use(async (req, resp, next) => {
     const header = { headers: { Authorization: token } };
     const response1 = await axios.get(linkedinMemberProfileURL, header);
     const response2 = await axios.get(linkedinEmailURL, header);
-    console.log(response1.data);
     const user = {
       linkedinId: response1.data.id,
       firstName: response1.data.localizedFirstName,

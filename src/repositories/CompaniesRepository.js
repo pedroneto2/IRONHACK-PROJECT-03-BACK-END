@@ -22,7 +22,7 @@ class CompaniesRepository {
   };
 
   findCompanyByName = async (companyName) => {
-    const company = await this.database.findOne({ name: { $regex: new RegExp(companyName, 'i') } });
+    const company = await this.database.findOne({ name: companyName.toUpperCase() });
     return company;
   };
 
@@ -37,7 +37,7 @@ class CompaniesRepository {
 
   create = async (companyName) => {
     const companyBody = {
-      name: companyName,
+      name: companyName.toUpperCase(),
     };
     const newCompany = await this.database.create(companyBody);
     return newCompany;
