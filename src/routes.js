@@ -22,7 +22,9 @@ route.use(async (req, resp, next) => {
     const header = { headers: { Authorization: token } };
     const response1 = await axios.get(linkedinMemberProfileURL, header);
     const response2 = await axios.get(linkedinEmailURL, header);
+    console.log(response1.data);
     const user = {
+      linkedinId: response1.data.id,
       firstName: response1.data.localizedFirstName,
       emailAddress: response2.data.elements[0]['handle~'].emailAddress,
       profilePicture:
@@ -42,5 +44,7 @@ route.use('/retrieveUser', (req, resp, next) => {
   };
   resp.status(200).json(user);
 });
+
+route.use('/assessments', assessmentsController);
 
 export default route;
