@@ -7,6 +7,12 @@ class AssessmentsService {
     this.repository = repository;
   }
   create = async (newAssessmentBody, companyID, userID) => {
+    if (newAssessmentBody.isAnonymous) {
+      for (let i = 1; i <= 7; i++) {
+        newAssessmentBody['grade' + i] /= 2;
+      }
+    }
+
     const schema = yup.object().shape({
       isAnonymous: yup.boolean(),
       grade1: yup.number().required().min(0).max(10),
@@ -16,9 +22,8 @@ class AssessmentsService {
       grade5: yup.number().required().min(0).max(10),
       grade6: yup.number().required().min(0).max(10),
       grade7: yup.number().required().min(0).max(10),
-      grade8: yup.number().required().min(0).max(10),
-      comment: yup.string().min(10).max(1000),
-      reply: yup.string().min(10).max(1000),
+      comment: yup.string().max(1000),
+      reply: yup.string().max(1000),
     });
 
     await verifySchema(schema, newAssessmentBody);
