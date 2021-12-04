@@ -6,7 +6,6 @@ class CompaniesRepository {
   }
 
   getAll = async (name = '', grade) => {
-    console.log(grade);
     grade === 'all' && (grade = '');
 
     const companies = await this.database

@@ -12,6 +12,16 @@ class AssessmentsRepository {
     const doubleAssessment = await this.database.findOne({ company: companyID, user: userID });
     return doubleAssessment;
   };
+
+  getOne = async (idCompany) => {
+
+    const Assessment = await this.database
+      .find({ company: idCompany })
+      .populate({path: 'company', select: ['name', 'companyLogo']})
+      .populate({path: 'user', select: ['firstName', 'emailAddress', 'profilePicture']})
+     
+    return Assessment;
+  };
 }
 
 export default AssessmentsRepository;
