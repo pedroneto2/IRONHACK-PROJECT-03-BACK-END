@@ -24,7 +24,7 @@ route.post('/createAssessment', async (req, resp, next) => {
       userID = userIsRegistered._id;
     }
     const doubleAssessment = await assessmentService.verifyDoubleAssessment(companyID, userID);
-    if (doubleAssessment) throw new UserRestrictions('User can not assess a company twice!');
+    if (doubleAssessment) throw new UserRestrictions('O usuário não pode avaliar uma empresa mais que uma vez!');
     const newAssessment = await assessmentService.create(req.body, companyID, userID);
     await companiesService.insertCompanyAssessment(newAssessment._id, companyID);
     await usersService.insertUserAssessment(newAssessment._id, userID);

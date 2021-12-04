@@ -39,7 +39,7 @@ class CompaniesService {
 //HELPER FUNCTIONS
 function verifyCompanyName(companyName) {
   if (companyName.length < 3 || companyName.length > 100 || typeof companyName !== 'string') {
-    throw new InvalidBodySchema('Invalid company name!');
+    throw new InvalidBodySchema('Nome de empresa inválido!');
   }
 }
 

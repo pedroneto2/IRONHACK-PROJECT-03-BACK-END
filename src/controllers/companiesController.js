@@ -28,12 +28,11 @@ route.get('/getName', async (req, resp, next) => {
 route.get('/assessment/:id', async (req, resp, next) => {
   const { id } = req.params;
   try {
-    console.log(id)
     const company = await assessmentService.getOne(id);
     return resp.status(200).json(company);
   } catch (error) {
     next(error);
   }
-})
+});
 
 export default route;

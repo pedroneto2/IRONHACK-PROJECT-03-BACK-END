@@ -47,8 +47,7 @@ class AssessmentsService {
     verifyID(companyId);
     const assessment = await this.repository.getOne(companyId);
     return assessment;
-  }
-
+  };
 }
 
 export default AssessmentsService;
