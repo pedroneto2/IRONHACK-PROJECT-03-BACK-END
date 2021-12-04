@@ -5,6 +5,7 @@ class CompaniesRepository {
     this.database = database;
   }
   getAll = async (name = '', grade) => {
+    console.log(grade);
     grade === 'all' && (grade = '');
     const companies = await this.database
       .find({ name: { $regex: new RegExp(name, 'i') } })
