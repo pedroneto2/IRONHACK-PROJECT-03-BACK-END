@@ -42,6 +42,13 @@ class AssessmentsService {
     const doubleAssessment = await this.repository.verifyDoubleAssessment(companyID, userID);
     return doubleAssessment;
   };
+
+  getOne = async (companyId) => {
+    verifyID(companyId);
+    const assessment = await this.repository.getOne(companyId);
+    return assessment;
+  }
+
 }
 
 export default AssessmentsService;
