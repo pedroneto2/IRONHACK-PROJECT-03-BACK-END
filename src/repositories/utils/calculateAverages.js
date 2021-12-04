@@ -1,5 +1,6 @@
 export const calculateAverage = (assessments) =>
   assessments.reduce((accumulator, assessment) => {
+    
     let gradesQty = 0;
     const sumGrades = Object.keys(assessment.toJSON()).reduce((accumulator2, grade) => {
       if (grade.includes('grade')) {
