@@ -11,7 +11,7 @@ export const verifySchema = async (schema, body) => {
   }
 };
 
-export const verifyID = async (id) => {
+export const verifyID = (id) => {
   const validID = isValidObjectId(id);
   if (!validID) {
     throw new InvalidID();
