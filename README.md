@@ -84,4 +84,10 @@ Runs the app in the production mode. Used for deployment.
 
 ----------------------------------------------------------------
 
-#### PS: In order to run the app properly, a .ENV file must be added.
+#### PS: In order to run the app properly, a .ENV file must be added with the following variables:
+- PORT
+- CLIENT_ID
+- CLIENT_SECRET
+- REDIRECT_URL
+- MONGODB_URL
+- CORS_URL
