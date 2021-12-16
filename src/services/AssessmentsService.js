@@ -48,6 +48,18 @@ class AssessmentsService {
     const assessment = await this.repository.getOne(companyId);
     return assessment;
   };
+
+  getAllByUser = async (userID) => {
+    verifyID(userID);
+    const assessments = await this.repository.getAllByUser(userID);
+    return assessments;
+  };
+
+  deleteOneById = async (assessmentID, userID) => {
+    verifyID(assessmentID);
+    verifyID(userID);
+    await this.repository.deleteOneById(assessmentID, userID);
+  };
 }
 
 export default AssessmentsService;

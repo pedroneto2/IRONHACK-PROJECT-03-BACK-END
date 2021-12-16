@@ -8,6 +8,7 @@ import NotAuthenticated from './exceptions/NotAuthenticated';
 
 import companiesController from './controllers/companiesController';
 import assessmentsController from './controllers/assessmentsController';
+import userController from './controllers/usersController';
 
 const route = Router();
 
@@ -44,5 +45,6 @@ route.use('/retrieveUser', (req, resp, next) => {
 });
 
 route.use('/assessments', assessmentsController);
+route.use('/user', userController);
 
 export default route;

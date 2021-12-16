@@ -14,13 +14,23 @@ class AssessmentsRepository {
   };
 
   getOne = async (idCompany) => {
-
     const Assessment = await this.database
       .find({ company: idCompany })
-      .populate({path: 'company', select: ['name', 'companyLogo']})
-      .populate({path: 'user', select: ['firstName', 'emailAddress', 'profilePicture']})
-     
+      .populate({ path: 'company', select: ['name', 'companyLogo'] })
+      .populate({ path: 'user', select: ['firstName', 'emailAddress', 'profilePicture'] });
+
     return Assessment;
+  };
+
+  getAllByUser = async (userID) => {
+    const assessments = await this.database
+      .find({ user: userID })
+      .populate({ path: 'company', select: ['name', 'companyLogo'] });
+    return assessments;
+  };
+
+  deleteOneById = async (assessmentID, userID) => {
+    await this.database.findOneAndDelete({ _id: assessmentID, user: userID });
   };
 }
 
