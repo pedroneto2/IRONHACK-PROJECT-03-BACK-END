@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watchAll --detectOpenHandles",
     "dev": "nodemon --exec babel-node src/index.js",
-    "start": "npm-run-all -s clean build init ",
+    "start": "npm-run-all -s clean build init",
     "clean": "rm -rf build",
     "build": "babel src --out-dir build --copy-files",
     "init": "node build/index.js"
