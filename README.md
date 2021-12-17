@@ -11,7 +11,7 @@ This app was designed in order to provide a way of rating the feedbacks and sele
 
 ## HOW IT WORKS?
 
-You can access the deployed site in this link: !!! SITE LINK HERE !!!!
+**You can access the deployed site in this link: https://harvest-ironhack.netlify.app/** :point_left: :point_left: :point_left:
 
 The companies rating can be freely accessed
 
@@ -25,6 +25,7 @@ The login is only trhough LINKED IN, therefore you must have a LINKED IN account
 - Full Stack App
 - Jest tests
 - Authentication trhough LINKED IN
+- clearbit Logo API integration: https://clearbit.com/logo
  
 ## TECHNOLOGIES
 
@@ -39,6 +40,12 @@ The login is only trhough LINKED IN, therefore you must have a LINKED IN account
 - Jest
 - Supertest
 - Eslint
+
+## DEPLOYMENT
+
+- FRONT-END: Netlify
+- BACK-END: Heroku
+- Data Base: MongoDB Atlas
 
 ## DEVELOPMENT SCHEMAS
 
