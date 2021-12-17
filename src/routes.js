@@ -10,6 +10,8 @@ import companiesController from './controllers/companiesController';
 import assessmentsController from './controllers/assessmentsController';
 import userController from './controllers/usersController';
 
+import { handleUserRegistration } from './controllers/commons';
+
 const route = Router();
 
 //PUBLIC ROUTES
@@ -29,6 +31,7 @@ route.use(async (req, resp, next) => {
       profilePicture:
         response1.data.profilePicture['displayImage~'].elements['0'].identifiers['0'].identifier,
     };
+    user._id = await handleUserRegistration(user);
     req.user = user;
     next();
   } catch (error) {

@@ -9,7 +9,6 @@ route.get('/getAll/:grade', async (req, resp, next) => {
     const { name } = req.query;
     const { grade } = req.params;
     const companies = await companiesService.getAll(name, grade);
-    console.log(companies);
     return resp.status(200).json(companies);
   } catch (error) {
     next(error);

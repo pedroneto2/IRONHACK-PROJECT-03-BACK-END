@@ -1,13 +1,12 @@
 import { Router } from 'express';
 
-import { usersService, assessmentService } from './commons';
+import { assessmentService } from './commons';
 
 const route = Router();
 
 route.get('/assessments', async (req, resp, next) => {
   try {
-    const { linkedinId } = req.user;
-    const { _id } = await usersService.findUserByLinkedinId(linkedinId);
+    const { _id } = req.user;
     const companies = await assessmentService.getAllByUser(_id);
     resp.status(200).json(companies);
   } catch (error) {
@@ -18,8 +17,7 @@ route.get('/assessments', async (req, resp, next) => {
 route.delete('/assessment/:id', async (req, resp, next) => {
   try {
     const { id } = req.params;
-    const { linkedinId } = req.user;
-    const { _id } = await usersService.findUserByLinkedinId(linkedinId);
+    const { _id } = req.user;
     await assessmentService.deleteOneById(id, _id);
     resp.status(200).json({ message: 'Avaliação deletada com sucesso!' });
   } catch (error) {

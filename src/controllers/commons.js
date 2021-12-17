@@ -18,3 +18,12 @@ export const companiesService = new CompaniesService(companyDB);
 
 const userDB = new UsersRepository(UserModel);
 export const usersService = new UsersService(userDB);
+
+export const handleUserRegistration = async (user) => {
+  const userIsRegistered = await usersService.findUserByLinkedinId(user.linkedinId);
+  if (!userIsRegistered) {
+    const registeredUser = await usersService.create(user);
+    return registeredUser._id;
+  }
+  return userIsRegistered._id;
+};

@@ -15,7 +15,7 @@ class CompaniesRepository {
     const averages = companies.map((company) => ({
       _id: company._id,
       name: company.name,
-      logo: company.logo,
+      companyLogo: company.companyLogo,
       average: calculateAverage(company.assessments),
     }));
 
@@ -39,7 +39,7 @@ class CompaniesRepository {
   create = async (companyName, companyLogo) => {
     const companyBody = {
       name: companyName.toUpperCase(),
-      logo: companyLogo,
+      companyLogo: companyLogo,
     };
     const newCompany = await this.database.create(companyBody);
     return newCompany;

@@ -8,7 +8,7 @@ const route = Router();
 route.post('/createAssessment', async (req, resp, next) => {
   try {
     const { company = '', companyLogo = '' } = req.body;
-    let companyID, userID;
+    let companyID;
     const foundCompany = await companiesService.findCompanyByName(company);
     if (!foundCompany) {
       const registeredCompany = await companiesService.create(company, companyLogo);
@@ -16,18 +16,11 @@ route.post('/createAssessment', async (req, resp, next) => {
     } else {
       companyID = foundCompany._id;
     }
-    const userIsRegistered = await usersService.findUserByLinkedinId(req.user.linkedinId);
-    if (!userIsRegistered) {
-      const registeredUser = await usersService.create(req.user);
-      userID = registeredUser._id;
-    } else {
-      userID = userIsRegistered._id;
-    }
-    const doubleAssessment = await assessmentService.verifyDoubleAssessment(companyID, userID);
+    const doubleAssessment = await assessmentService.verifyDoubleAssessment(companyID,req.user._id);
     if (doubleAssessment) throw new UserRestrictions('O usuário não pode avaliar uma empresa mais que uma vez!');
-    const newAssessment = await assessmentService.create(req.body, companyID, userID);
+    const newAssessment = await assessmentService.create(req.body, companyID, req.user._id);
     await companiesService.insertCompanyAssessment(newAssessment._id, companyID);
-    await usersService.insertUserAssessment(newAssessment._id, userID);
+    await usersService.insertUserAssessment(newAssessment._id, req.user._id);
     return resp.status(200).json(newAssessment);
   } catch (error) {
     next(error);

@@ -19,7 +19,6 @@ app.use(express.json());
 app.use('/', routes);
 
 app.use((error, req, resp, next) => {
-  console.log(error.message);
   resp.status(error.status || 500).json({ message: error.message });
 });
 
