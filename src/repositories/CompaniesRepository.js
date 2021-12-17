@@ -15,6 +15,7 @@ class CompaniesRepository {
     const averages = companies.map((company) => ({
       _id: company._id,
       name: company.name,
+      logo: company.logo,
       average: calculateAverage(company.assessments),
     }));
 
@@ -30,14 +31,15 @@ class CompaniesRepository {
     if (!name) return [];
     const companies = await this.database.find(
       { name: { $regex: new RegExp(name, 'i') } },
-      { name: 1, _id: 0 }
+      { name: 1, _id: 0, logo: 1 }
     );
     return companies;
   };
 
-  create = async (companyName) => {
+  create = async (companyName, companyLogo) => {
     const companyBody = {
       name: companyName.toUpperCase(),
+      logo: companyLogo,
     };
     const newCompany = await this.database.create(companyBody);
     return newCompany;

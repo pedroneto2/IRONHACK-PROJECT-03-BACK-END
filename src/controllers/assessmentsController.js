@@ -7,11 +7,11 @@ const route = Router();
 
 route.post('/createAssessment', async (req, resp, next) => {
   try {
-    const { company = '' } = req.body;
+    const { company = '', companyLogo = '' } = req.body;
     let companyID, userID;
     const foundCompany = await companiesService.findCompanyByName(company);
     if (!foundCompany) {
-      const registeredCompany = await companiesService.create(company);
+      const registeredCompany = await companiesService.create(company, companyLogo);
       companyID = registeredCompany._id;
     } else {
       companyID = foundCompany._id;

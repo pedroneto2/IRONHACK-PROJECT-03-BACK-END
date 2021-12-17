@@ -23,9 +23,9 @@ class CompaniesService {
     return company;
   };
 
-  create = async (companyName) => {
+  create = async (companyName, companyLogo) => {
     verifyCompanyName(companyName);
-    const newCompany = await this.repository.create(companyName);
+    const newCompany = await this.repository.create(companyName, companyLogo);
     return newCompany;
   };
 
